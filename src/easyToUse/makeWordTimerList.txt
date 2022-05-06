@@ -1,0 +1,71 @@
+Timer_Text_B_GuiNumTime
+Timer_Text_B_GuiNumNumeral
+Timer_Text_B_conTime_dateTime
+Timer_Text_B_conNumeral_hour
+Timer_Text_B_conNumeral_minute
+Timer_Text_B_conNumeral_second
+Timer_Text_SubListReLoadForTime
+Timer_Text_SubListReLoadForNumeral
+Timer_Text_SubShowTimeOrNumeral
+Timer_Text_SubShowErrorWindow
+Timer_Text_SubStopAlarm
+Timer_Text_SubStopAlarmAndCloseWindow
+Timer_Text_SubSuspensionAlarmToggle
+Timer_Text_startTimeFromDateTime(dateTime=235959, listNumber="_")
+Timer_Text_startNumeralFromHourMinSec(hour=0, min=0, sec=0, listNumber="_")
+Timer_Text_stopTime(listNumber="_")
+Timer_Text_stopNumeralSuspension(listNumber="_")
+Timer_Text_reStartNumeral(listNumber="_")
+Timer_Text_getFlagNotSuspension(listNumber="_")
+Timer_Text_timeListChange(listNumber=1)
+Timer_Text_numeralListChange(listNumber=1)
+Timer_Text_listReloadForTime()
+Timer_Text_listReloadForNumeral()
+Timer_Text_getCurrentListNumberForTime()
+Timer_Text_getCurrentListNumberForNumeral()
+Timer_Text_checkInUseListNumberForTime(listNumber)
+Timer_Text_checkInUseListNumberForNumeral(listNumber)
+Timer_Text_getNoInUseListNumberForTime()
+Timer_Text_getNoInUseListNumberForNumeral()
+Timer_Text_startNumeralFromWord(hour_min_sec_word="1m 1s", listNumber="_")
+Timer_Text_setAlarmNumberForTime(number=1)
+Timer_Text_setAlarmNumberForNumeral(number=1)
+Timer_Text_setMemorandumForTime(memo="")
+Timer_Text_setMemorandumForNumeral(memo="")
+Timer_Text_setSoftForTime(filePath="_", args="_", workDir="_", softExeFlag=True)
+Timer_Text_setSoftForNumeral(filePath="_", args="_", workDir="_", softExeFlag=True)
+Timer_Text_setTimerItemLogicForTime(itemName, functionName)
+Timer_Text_setTimerItemLogicForNumeral(itemName, functionName)
+Timer_Text_setTimerItemForTime(itemName)
+Timer_Text_setTimerItemForNumeral(itemName)
+Timer_Text_startTimeFromDateTimeAndTimerItemName(itemName, dateTime=235959, listNumber="_")
+Timer_Text_startNumeralFromHourMinSecAndTimerItemName(itemName, hour=0, min=0, sec=0, listNumber="_")
+Timer_Text_getInUseWindowIsNumeralFlag()
+Timer_Text_showTimeOrNumeral(order="")
+Timer_Text_showTimeOrNumeralToggle(minimizeFlag=True, order="_")
+Timer_Text_showTimeWindow()
+Timer_Text_showNumeralWindow()
+Timer_Text_showExchangeTimeOrNumeral()
+Timer_Text_showAssignWindowForTimeToggle(order="_")
+Timer_Text_showAssignWindowForNumeralToggle(order="_")
+Timer_Text_showSoftWindowForTimeToggle(order="_")
+Timer_Text_showSoftWindowForNumeralToggle(order="_")
+Timer_Text_showOptionAllWindowToggle(order="_")
+Timer_Text_showErrorWindowToggle(order="_")
+Timer_Text_errorOutput(append)
+Timer_Text_errorOutputSingle(single)
+Timer_Text_exitTimer()
+Timer_Text_exitTimerWithoutAdvice()
+Timer_Text_exitTimerIfNotHave()
+Timer_Text_exitTimerIfNotHaveAndOption()
+Timer_Text_showAlarmWindow(expression="", order="_")
+Timer_Text_alarmRing(alarmNumber=1, expression="")
+Timer_Text_alarmRingNotShow(alarmNumber=1)
+Timer_Text_saveListForTime(saveListNumber=1, title="")
+Timer_Text_saveListForNumeral(saveListNumber=1, title="")
+Timer_Text_loadSaveListForTime(saveListNumber=1)
+Timer_Text_loadSaveListForNumeral(saveListNumber=1)
+Timer_Text_newTimerItemFromCommand(itemName, filePath, args="", workDir="")
+Timer_Text_kanjiAndFullNumeralReplaceInteger(timeWord, originWord)
+Timer_Text_startTimeFromKanji(sentence="二十三時三分三十秒", listNumber="_")
+Timer_Text_startNumeralFromKanji(sentence="三分三十秒", listNumber="_")
