@@ -6,9 +6,9 @@
 
 gutiin_cleatedDateTimer(){
 	version := "v1.00"
-	cleatedDate := "2022年4月18日"
+	cleatedDate := "2023年3月20日"
 	str_local := "昔のAhkの解像度の違いに対応"
-	softName := "TanjunTimer"
+	softName := "ListTimerBU"
 
 	Gui, 34:Add, Text,   X70 Y10 , %softName%
 
