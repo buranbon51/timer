@@ -152,6 +152,16 @@ arutif_confirmHourMinSecExecuteNumeral(argAll){
 
 arutif_argUseExeTimerAll(arg1, arg2, arg3, arg4){
 
+	if(arg1 == "time"){
+		tglo_iniSetStartWindow := False
+		tglo_mainIsNumeralWindowFlag := False
+		return
+	} else if(arg1 == "numeral"){
+		tglo_iniSetStartWindow := True
+		tglo_mainIsNumeralWindowFlag := True
+		return
+	}
+
 	leftStr := arutif_leftStrOrNullFromSearchStr(arg1, "=")
 	StringLower, leftStr, leftStr
 	if(leftStr == "timelist"){

@@ -8,7 +8,7 @@
 ; 返り値は実行するリストの番号になる。ミスがあったら、0 を返すようにしている
 
 ; 時刻で
-Timer_Text_startTimeFromDateTime(dateTime=235959, listNumber="_"){
+Timer_Text_startTimeFromDateTime(dateTime=235959, listNumber="_", reloadNotFlag=False){
 	if(listNumber == "_"){
 		listNumber := guf_getControl( "List20_1", 20 )
 	} else if(listNumber == "any"){
@@ -25,11 +25,14 @@ Timer_Text_startTimeFromDateTime(dateTime=235959, listNumber="_"){
 	}
 	dateTime := sufltif_formatDateTimeUseText(dateTime)
 	returnValue := time_timerExecute(dateTime, listNumber)
+	if( reloadNotFlag == False ){
+		Timer_Text_listReloadForTime()
+	}
 	return returnValue
 }
 
 ; 今からの時間で
-Timer_Text_startNumeralFromHourMinSec(hour=0, min=0, sec=0, listNumber="_"){
+Timer_Text_startNumeralFromHourMinSec(hour=0, min=0, sec=0, listNumber="_", reloadNotFlag=False){
 	if(listNumber == "_"){
 		listNumber := guf_getControl( "List21_2", 21 )
 	} else if(listNumber == "any"){
@@ -40,6 +43,9 @@ Timer_Text_startNumeralFromHourMinSec(hour=0, min=0, sec=0, listNumber="_"){
 		}
 	}
 	returnValue := time_stopWatch(hour, min, sec, listNumber)
+	if( reloadNotFlag == False ){
+		Timer_Text_listReloadForNumeral()
+	}
 	return returnValue
 }
 
@@ -207,7 +213,7 @@ Timer_Text_getNoInUseListNumberForNumeral(){
 
 ; 今からの時間で指定の場合で、
 ; 1h 1m 1s などの指定の仕方で実行する
-Timer_Text_startNumeralFromWord(hour_min_sec_word="1m 1s", listNumber="_"){
+Timer_Text_startNumeralFromWord(hour_min_sec_word="1m 1s", listNumber="_", reloadNotFlag=False){
 	tmpStr := sufltif_colonFormatHMSSentence(hour_min_sec_word)
 	allSec := outstime_confirmAndGetAllSecFromWord(tmpStr)
 	if(allSec == "error"){
@@ -228,6 +234,9 @@ Timer_Text_startNumeralFromWord(hour_min_sec_word="1m 1s", listNumber="_"){
 		}
 	}
 	returnValue := time_stopWatch(hour, min, sec, listNumber)
+	if( reloadNotFlag == False ){
+		Timer_Text_listReloadForNumeral()
+	}
 	return returnValue
 }
 
@@ -316,21 +325,11 @@ Timer_Text_setTimerItemForNumeral(itemName){
 
 ; アイテム名を指定して、スタートボタン
 ; 時刻で
-Timer_Text_startTimeFromDateTimeAndTimerItemName(itemName, dateTime=235959, listNumber="_"){
+Timer_Text_startTimeFromDateTimeAndTimerItemName(itemName, dateTime=235959, listNumber="_", reloadNotFlag=False){
 	returnValue := Timer_Text_setTimerItemLogicForTime(itemName, "Timer_Text_startTimeFromDateTimeAndTimerItemName()")
 	if( returnValue ){
 		if(listNumber == "_"){
 			listNumber := guf_getControl( "List20_1", 20 )
-
-			dateTime := sufltif_colonFormatDateTime6Char(dateTime)
-			if( time_checkErrorFormatDateTimeUseText(dateTime) ){
-				gutimf_appendErrorExplain("Timer_Text_startTimeFromDateTimeAndTimerItemName()のエラー。`n時刻の書式のエラー。`n時刻の指定  " . dateTime)
-				return "0"
-			}
-			dateTime := sufltif_formatDateTimeUseText(dateTime)
-
-			returnValue := time_timerExecute(dateTime, listNumber)
-			return returnValue
 		} else if(listNumber == "any"){
 			listNumber := Timer_Text_getNoInUseListNumberForTime()
 			if( listNumber == "error" ){
@@ -346,21 +345,20 @@ Timer_Text_startTimeFromDateTimeAndTimerItemName(itemName, dateTime=235959, list
 		dateTime := sufltif_formatDateTimeUseText(dateTime)
 		returnValue := time_timerExecute(dateTime, listNumber)
 		if( returnValue ){
-			; ソフトの入力などを更新
-			time_changeListTimer()
+			if( reloadNotFlag == False ){
+				Timer_Text_listReloadForTime()
+			}
 		}
 	}
 	return returnValue
 }
 
 ; 今からの時間で
-Timer_Text_startNumeralFromHourMinSecAndTimerItemName(itemName, hour=0, min=0, sec=0, listNumber="_"){
+Timer_Text_startNumeralFromHourMinSecAndTimerItemName(itemName, hour=0, min=0, sec=0, listNumber="_", reloadNotFlag=False){
 	returnValue := Timer_Text_setTimerItemLogicForNumeral(itemName, "Timer_Text_startNumeralFromHourMinSecAndTimerItemName()")
 	if( returnValue ){
 		if(listNumber == "_"){
 			listNumber := guf_getControl( "List21_2", 21 )
-			returnValue := time_stopWatch(hour, min, sec, listNumber)
-			return returnValue
 		} else if(listNumber == "any"){
 			listNumber := Timer_Text_getNoInUseListNumberForNumeral()
 			if( listNumber == "error" ){
@@ -370,8 +368,9 @@ Timer_Text_startNumeralFromHourMinSecAndTimerItemName(itemName, hour=0, min=0, s
 		}
 		returnValue := time_stopWatch(hour, min, sec, listNumber)
 		if( returnValue ){
-			; ソフトの入力などを更新
-			time_changeListStopWatch()
+			if( reloadNotFlag == False ){
+				Timer_Text_listReloadForNumeral()
+			}
 		}
 	}
 	return returnValue
@@ -905,7 +904,7 @@ Timer_Text_getOneOfHourMinSecFromKanji(timeWord, target, originWord){
 ; 漢数字や全角文字でも指定できる。
 ; 時  分  秒  の単語から、時間を解析して実行する。
 ; 時刻で
-Timer_Text_startTimeFromKanji(sentence="二十三時三分三十秒", listNumber="_"){
+Timer_Text_startTimeFromKanji(sentence="二十三時三分三十秒", listNumber="_", reloadNotFlag=False){
 
 	sentence := Trim(sentence)
 
@@ -923,6 +922,9 @@ Timer_Text_startTimeFromKanji(sentence="二十三時三分三十秒", listNumber
 	;If sentence is time
 	;{
 	;	returnValue := time_timerExecute(sentence, listNumber)
+	;	if( reloadNotFlag == False ){
+	;		Timer_Text_listReloadForTime()
+	;	}
 	;	return returnValue
 	;}
 
@@ -934,6 +936,9 @@ Timer_Text_startTimeFromKanji(sentence="二十三時三分三十秒", listNumber
 		If tmpSentence is time
 		{
 			returnValue := time_timerExecute(tmpSentence, listNumber)
+			if( reloadNotFlag == False ){
+				Timer_Text_listReloadForTime()
+			}
 			return returnValue
 		}
 	}
@@ -1112,8 +1117,9 @@ Timer_Text_startTimeFromKanji(sentence="二十三時三分三十秒", listNumber
 	;	listNumber := guf_getControl( "List20_1", 20 )
 	;}
 	returnValue := time_timerExecute(dateTime, listNumber)
-	; 今選択中のリストを更新
-	Timer_Text_listReloadForTime()
+	if( reloadNotFlag == False ){
+		Timer_Text_listReloadForTime()
+	}
 	return returnValue
 }
 
@@ -1121,7 +1127,7 @@ Timer_Text_startTimeFromKanji(sentence="二十三時三分三十秒", listNumber
 ; 漢数字や全角文字でも指定できる。
 ; 時間  分  秒  の単語から、時間を解析して実行する。
 ; 今からの時間で
-Timer_Text_startNumeralFromKanji(sentence="三分三十秒", listNumber="_"){
+Timer_Text_startNumeralFromKanji(sentence="三分三十秒", listNumber="_", reloadNotFlag=False){
 
 	sentence := Trim(sentence)
 
@@ -1144,6 +1150,9 @@ Timer_Text_startNumeralFromKanji(sentence="三分三十秒", listNumber="_"){
 		sec := outstime_confirmTimerArgssSecondOnly(tmpSentence, A_ThisFunc)
 
 		returnValue := time_stopWatch(hour, min, sec, listNumber)
+		if( reloadNotFlag == False ){
+			Timer_Text_listReloadForNumeral()
+		}
 		return returnValue
 	}
 
@@ -1284,7 +1293,8 @@ Timer_Text_startNumeralFromKanji(sentence="三分三十秒", listNumber="_"){
 	;	listNumber := guf_getControl( "List21_2", 21 )
 	;}
 	returnValue := time_stopWatch(hour, min, sec, listNumber)
-	; 今選択中のリストを更新
-	Timer_Text_listReloadForNumeral()
+	if( reloadNotFlag == False ){
+		Timer_Text_listReloadForNumeral()
+	}
 	return returnValue
 }

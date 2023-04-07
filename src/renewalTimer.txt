@@ -10,3 +10,15 @@ guiTimerInitFunc.ahkのgutimf_をgutiin_に変えた
 タイマーを実行した後に終了する設定の場合、終了する動作が遅かったので早くした
 2022年4月18日
 名前をTanjunTimerに変えた
+2023年3月20日
+ListTimerBUに名前を変えた
+2023年4月7日
+Timer_Text_startTimeFromDateTime()
+Timer_Text_startNumeralFromHourMinSec()
+Timer_Text_startNumeralFromWord()
+Timer_Text_startTimeFromDateTimeAndTimerItemName()
+Timer_Text_startNumeralFromHourMinSecAndTimerItemName()
+Timer_Text_startTimeFromKanji()
+Timer_Text_startNumeralFromKanji()
+これらに reloadNotFlag の引数を加えて、これが True ならリストを更新しないようにした
+パラメータに time か numeral を指定して起動することで、最初に表示するものを固定できるようにした
