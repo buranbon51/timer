@@ -38,7 +38,7 @@ global glotimer_Gui29Title := "音楽ファイルの試聴"
 
 global glotimer_Gui31Title := "時刻の保存・読み出し"
 global glotimer_Gui32Title := "数字指定の保存・読み出し"
-global glotimer_Gui33Title := "ListEasyTimerの警告"
+global glotimer_Gui33Title := "ListTimerBUの警告"
 global glotimer_Gui34Title := "タイマーのバージョン情報"
 
 global glotimer_userDir := A_ScriptDir  . "\user"

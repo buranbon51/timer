@@ -22,3 +22,5 @@ Timer_Text_startTimeFromKanji()
 Timer_Text_startNumeralFromKanji()
 これらに reloadNotFlag の引数を加えて、これが True ならリストを更新しないようにした
 パラメータに time か numeral を指定して起動することで、最初に表示するものを固定できるようにした
+2023年4月14日
+ListTimerBU の名前に変えてなかった個所があったので変えた

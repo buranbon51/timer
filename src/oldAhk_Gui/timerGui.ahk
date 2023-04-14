@@ -412,7 +412,7 @@ Menu, Tray, Add, 終了する(&X), SubExitAppTimer
 Menu, Tray, NoStandard
 Menu, Tray, Default, 表示する(&H)
 Menu, Tray, Click, 1
-Menu, Tray, Tip, ListEasyTimer
+Menu, Tray, Tip, ListTimerBU
 
 
 gutiin_initGuiAll()
