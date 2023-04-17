@@ -6,7 +6,7 @@
 
 gutiin_cleatedDateTimer(){
 	version := "v1.00"
-	cleatedDate := "2023年4月14日"
+	cleatedDate := "2023年4月17日"
 	str_local := "昔のAhkの解像度の違いに対応"
 	softName := "ListTimerBU"
 

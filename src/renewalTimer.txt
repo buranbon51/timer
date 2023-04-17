@@ -1,16 +1,4 @@
-﻿2021年10月16日
-Timer_Text_saveListForNumeral()のsaveListNumberをsaveListNumber=1にした
-Timer_Text_showAlarmWindow()のexpressionをexpression=""にした
-2022年3月12日
-oldAhk_GuiとnewAhk_Gui関連のファイルの位置を変えた
-バージョン情報に64ビットなどを表示するようにした
-2022年3月13日
-guiTimerInitFunc.ahkのgutimf_をgutiin_に変えた
-タイマーを実行した後に終了する設定の場合、閉じるウインドウを普通の閉じ方をしても終了するようにした
-タイマーを実行した後に終了する設定の場合、終了する動作が遅かったので早くした
-2022年4月18日
-名前をTanjunTimerに変えた
-2023年3月20日
+﻿2023年3月20日
 ListTimerBUに名前を変えた
 2023年4月7日
 Timer_Text_startTimeFromDateTime()
@@ -24,3 +12,5 @@ Timer_Text_startNumeralFromKanji()
 パラメータに time か numeral を指定して起動することで、最初に表示するものを固定できるようにした
 2023年4月14日
 ListTimerBU の名前に変えてなかった個所があったので変えた
+2023年4月17日
+ファイル実行パスと作業フォルダに "" "" と重複して付けた場合はエラーになるようにした。

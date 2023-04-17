@@ -395,6 +395,20 @@ time_timeOutStopWaLogic(typeNum){
 	guf_setControl("今からの時間で指定", "Text21_2", 21 )
 }
 
+; 両端の " " を取る
+time_dbQuouteEdgeTrim(str_local){
+	dbQuouteChar := """"
+	StringLeft, LChar, str_local, 1
+	if(LChar == dbQuouteChar){
+		StringTrimLeft, strTmp, str_local, 1
+		StringRight, rChar, strTmp, 1
+		if(rChar == dbQuouteChar){
+			StringTrimRight, str_local, strTmp, 1
+		}
+	}
+	return str_local
+}
+
 time_appExeLogic(typeNum){
 	app := tglo_appName%typeNum%
 	args := tglo_appArgs%typeNum%
@@ -404,12 +418,12 @@ time_appExeLogic(typeNum){
 	args := outstime_textOutTrimssParsent(args)
 	workDir := outstime_textOutTrimssParsent(workDir)
 
-	; argsが空だとエラーになるので分ける
-	if(args == ""){
-		Run, %app% , %workDir%,  UseErrorLevel
-	} else {
-		Run, %app% %args% , %workDir%,  UseErrorLevel
-	}
+	dbQuouteChar := """"
+	app := time_dbQuouteEdgeTrim(app)
+	appArgs := dbQuouteChar . app . dbQuouteChar . " " . args
+	appArgs := Trim(appArgs)
+	workDir := time_dbQuouteEdgeTrim(workDir)
+	Run, %appArgs% , %workDir%,  UseErrorLevel
 	gutimf_checkErrorLevelExplain("ファイルが起動出きていません")
 }
 
@@ -421,13 +435,13 @@ time_appExeStopWaLogic(typeNum){
 	app := outstime_textOutTrimssParsent(app)
 	args := outstime_textOutTrimssParsent(args)
 	workDir := outstime_textOutTrimssParsent(workDir)
-	
-	; argsが空だとエラーになるので分ける
-	if(args == ""){
-		Run, %app% , %workDir%,  UseErrorLevel
-	} else {
-		Run, %app% %args% , %workDir%,  UseErrorLevel
-	}
+
+	dbQuouteChar := """"
+	app := time_dbQuouteEdgeTrim(app)
+	appArgs := dbQuouteChar . app . dbQuouteChar . " " . args
+	appArgs := Trim(appArgs)
+	workDir := time_dbQuouteEdgeTrim(workDir)
+	Run, %appArgs% , %workDir%,  UseErrorLevel
 	gutimf_checkErrorLevelExplain("ファイルが起動出きていません")
 }
 
